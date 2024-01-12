@@ -1,6 +1,9 @@
 Algorithms:
 
 P1: Maximum subsequence sum
+
 P2: Insertion sort and Shell sort
+
 P3: 
+
 P4: 
