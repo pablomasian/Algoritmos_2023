@@ -1,0 +1,87 @@
+In this practice we will implement different operations on min heaps. The goal of the practice is to analyse their efficiency.
+The functions were tested using randomly generated numbers.
+Studying the following tables we can determine the theoretical complexity of the algorithms and perform an empirical verification using vectors in ascending and descending order, and also with an initially unsorted array
+
+
+Creating a heap:
+      n            t(n)           t(n)/n^0.80           t(n)/n         t(n)/n*log(n)
+(*)  8000          51.610          0.038928            0.006451          0.000718
+(*) 16000          84.021          0.036399            0.005251          0.000542
+(*) 32000         161.498          0.040183            0.005047          0.000487
+(*) 64000         330.617          0.047248            0.005166          0.000467
+   128000        1034.000          0.084870            0.008078          0.000687	(Anomaly)
+   256000        1064.000          0.050159            0.004156          0.000334
+
+Underestimated bound: t/n^0.8           
+Overestimated bound: t/n*log(n)
+Adjusted bound: t/n          
+Observations:
+-The results grow bigger in the underestimated bound and smaller in the overestimated bound.
+-In the adjusted bound the value tends to a value of 0.005...
+-There could be possible anomalies on some values
+
+
+Testing Heapsort with random vector:
+      n            t(n)           t(n)/n^1.00        t(n)/n*log(n)      t(n)/n^1.20 
+(*)   500          48.756          0.097512            0.015691          0.028136
+(*)  1000         108.451          0.108451            0.015700          0.027242
+(*)  2000         242.758          0.121379            0.015969          0.026542
+     4000         544.000          0.136000            0.016397          0.025890
+     8000        1194.000          0.149250            0.016607          0.024734
+    16000        2319.000          0.144937            0.014972          0.020910
+    32000        5239.000          0.163719            0.015782          0.020562
+
+Underestimated bound: t/n^1        
+Overestimated bound: t/n^1.2
+Adjusted bound: t/n*log(n)   
+Observations:
+-The results grow bigger in the underestimated bound and smaller in the overestimated bound.
+-In the adjusted bound the value tends to a value of 0.015...
+-There could be possible anomalies on some values
+
+
+
+Testing Heapsort with ascending vector:
+      n            t(n)           t(n)/n^1.00        t(n)/n*log(n)      t(n)/n^1.20 
+(*)   500          29.467          0.058934            0.009483          0.017005
+(*)  1000          73.031          0.073031            0.010572          0.018345
+(*)  2000         190.054          0.095027            0.012502          0.020780
+(*)  4000         424.865          0.106216            0.012806          0.020220
+     8000         938.000          0.117250            0.013046          0.019431
+    16000        1807.000          0.112937            0.011667          0.016293
+    32000        3819.000          0.119344            0.011505          0.014989
+
+Underestimated bound: t/n^1        
+Overestimated bound: t/n^1.2
+Adjusted bound: t/n*log(n)   
+Observations:
+-The results grow bigger in the underestimated bound and smaller in the overestimated bound.
+-In the adjusted bound the value tends to a value of 0.01...
+-There could be possible anomalies on some values
+
+
+
+Testing Heapsort with descending vector:
+      n            t(n)           t(n)/n^1.00  t(n)/n*log(n)        t(n)/n^1.20 
+(*)   500          34.766          0.069532            0.011188          0.020063
+(*)  1000          92.772          0.092772            0.013430          0.023303
+(*)  2000         209.747          0.104874            0.013798          0.022933
+(*)  4000         458.661          0.114665            0.013825          0.021828
+     8000         958.000          0.119750            0.013325          0.019845
+    16000        2062.000          0.128875            0.013313          0.018593
+    32000        4826.000          0.150812            0.014538          0.018941
+
+Underestimated bound: t/n^1        
+Overestimated bound: t/n^1.2
+Adjusted bound: t/n*log(n)   
+Observations:
+-The results grow bigger in the underestimated bound and smaller in the overestimated bound
+-In the adjusted bound the value tends to stay in a value of 0.013...
+-There could be possible anomalies on some values
+
+
+
+-The (*) indicates that the execution time is lower than 500µ so a loop was executed and the average time was used instead.In this loop the algorithmm is executed 1000 times.
+
+In conclusion: is a little faster when we apply the Heapsort with an ascending vector than the descending vector, and both are much faster than with a random vector.
+Create heap is O(n) and heapsort is O(nlogn)
