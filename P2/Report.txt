@@ -1,0 +1,201 @@
+In this practice we will analyse the implementation of two algorithms used to order the elemts of an array, insertion sort and shell sort. The goal of the practice is to analyse their efficiency.
+The algorithms were tested taking as reference the values given (500,1000,2000,4000,8000,16000,32000,64000) and both sorted (ascending and descending) and unsorted (randomly generated values) arrays were used.
+Studying the following tables we can determine the theoretical complexity of the algorithms and perform an empirical verification using an underestimated and overestimated cotes.
+
+
+INSERTION SORT:
+
+
+Tests of ordenation:
+
+Input: [  -4  -3   5   5  -2  -1  -5   0  -7  -9 ]
+Ordered?: 0
+Output:[  -9  -7  -5  -4  -3  -2  -1   0   5   5 ]
+Ordered?: 1
+
+Input: [   6   9  -9  -3   7  -1  -7  -9   6   1 ]
+Ordered?: 0
+Output:[  -9  -9  -7  -3  -1   1   6   6   7   9 ]
+Ordered?: 1
+
+Input: [   3  -7  -4   1   7   3   4  10  -4   2 ]
+Ordered?: 0
+Output:[  -7  -4  -4   1   2   3   3   4   7  10 ]
+Ordered?: 1
+
+Input: [   9  -2   3  -9  -7   4  -2  -6  -4  10 ]
+Ordered?: 0
+Output:[  -9  -7  -6  -4  -2  -2   3   4   9  10 ]
+Ordered?: 1
+
+Input: [   9   8   7   6   5   4   3   2   1   0 ]
+Ordered?: 0
+Output:[   0   1   2   3   4   5   6   7   8   9 ]
+Ordered?: 1
+
+Input: [   0   1   2   3   4   5   6   7   8   9 ]
+Ordered?: 1
+Output:[   0   1   2   3   4   5   6   7   8   9 ]
+Ordered?: 1
+
+
+Ordenation of descending vector:
+      n            t(n)           t(n)/n^1.80        t(n)/n^2.00        t(n)/n^2.20
+(*)   500         275.287      0.0038162753        0.0011011480      0.0003177252
+     1000        1044.000      0.0041562389        0.0010440000      0.0002622409
+     2000        5981.000      0.0068378538        0.0014952500      0.0003269699      (Anomaly)
+     4000       15937.000      0.0052323717        0.0009960625      0.0001896158
+     8000       66823.000      0.0063003401        0.0010441094      0.0001730326
+    16000      275318.000      0.0074545020        0.0010754609      0.0001551567
+    32000     1120513.000      0.0087125832        0.0010942510      0.0001374317
+    64000     4490845.000      0.0100277642        0.0010963977      0.0001198760
+
+Underestimated bound: n^1.80
+Overestimated bound: n^2.20
+Adjusted bound: n^2.00
+Observations: 
+  - the cocient between our times and the underestimated bound is strictly increasing
+  - the cocient between our times and the overestimated bound is strictly decreasing
+  - the cocient between our times and the adjusted bound stays near a stable value of 0.00109...
+  - there could be possible anomalies on some values
+
+Ordenation of ascending vector:
+      n            t(n)           t(n)/n^0.80        t(n)/n^1.00        t(n)/n^1.20
+(*)   500           0.999      0.0069245170        0.0019980000      0.0005765029
+(*)  1000           1.994      0.0079382570        0.0019940000      0.0005008702
+(*)  2000           5.979      0.0136711345        0.0029895000      0.0006537212
+(*)  4000          10.962      0.0143959989        0.0027405000      0.0005216964
+(*)  8000          24.992      0.0188507669        0.0031240000      0.0005177177
+(*) 16000          49.901      0.0216178880        0.0031188125      0.0004499511
+(*) 32000          84.088      0.0209225223        0.0026277500      0.0003300305
+(*) 64000         160.463      0.0229314189        0.0025072344      0.0002741315
+
+Underestimated bound: n^1.80       
+Overestimated bound: n^2.20
+Adjusted bound: n^2.00       
+Observations: 
+  - the cocient between our times and the underestimated bound is strictly increasing
+  - the cocient between our times and the overestimated bound is strictly decreasing
+  - the cocient between our times and the adjusted bound stays near a stable value of 0.002...
+  - there could be possible anomalies on some values
+
+Ordenation of random vector:
+      n            t(n)           t(n)/n^1.80        t(n)/n^2.00        t(n)/n^2.20
+(*)   500         143.567      0.0019902545        0.0005742680      0.0001656993
+(*)  1000         545.722      0.0021725584        0.0005457220      0.0001370792
+     2000        2029.000      0.0023196799        0.0005072500      0.0001109216
+     4000        9007.000      0.0029571420        0.0005629375      0.0001071638
+     8000       34920.000      0.0032923975        0.0005456250      0.0000904224
+    16000      135881.000      0.0036791099        0.0005307852      0.0000765764
+    32000      574281.000      0.0044653395        0.0005608213      0.0000704360
+    64000     2307779.000      0.0051531201        0.0005634226      0.0000616025
+
+Underestimated bound: n^1.80        
+Overestimated bound: n^2.20
+Adjusted bound: n^2.00
+Observations: 
+  - the cocient between our times and the underestimated bound is strictly increasing
+  - the cocient between our times and the overestimated bound is strictly decreasing
+  - the cocient between our times and the adjusted bound stays near a stable value of 0.0005...
+  - there could be possible anomalies on some values
+
+
+SHELL SORT:
+
+
+Tests of ordenation:
+
+Input: [  -6  -8   7   8   6   5  10  -3   4   9 ]
+Ordered?: 0
+Output:[  -8  -6  -3   4   5   6   7   8   9  10 ]
+Ordered?: 1
+
+Input: [   8  -5   2   6   2   6   9   4   9  -3 ]
+Ordered?: 0
+Output:[  -5  -3   2   2   4   6   6   8   9   9 ]
+Ordered?: 1
+
+Input: [  -7   4   8   2   9  -3   0  -6  10  -5 ]
+Ordered?: 0
+Output:[  -7  -6  -5  -3   0   2   4   8   9  10 ]
+Ordered?: 1
+
+Input: [   8  -6  10 -10  -2   1  -1  -5  -3   0 ]
+Ordered?: 0
+Output:[ -10  -6  -5  -3  -2  -1   0   1   8  10 ]
+Ordered?: 1
+
+Input: [   9   8   7   6   5   4   3   2   1   0 ]
+Ordered?: 0
+Output:[   0   1   2   3   4   5   6   7   8   9 ]
+Ordered?: 1
+
+Input: [   0   1   2   3   4   5   6   7   8   9 ]
+Ordered?: 1
+Output:[   0   1   2   3   4   5   6   7   8   9 ]
+Ordered?: 1
+
+
+Ordenation of descending vector:
+      n            t(n)          t(n)/n*log(n)^0.95       t(n)/n*log(n)^1.15       t(n)/n*log(n)^1.35
+(*)   500          16.944            0.0059745181              0.0041459125            0.0028769836
+(*)  1000          38.964            0.0062128868              0.0042211040            0.0028678647
+(*)  2000          87.706            0.0063852427              0.0042560270            0.0028368172
+(*)  4000         198.368            0.0066463518              0.0043534143            0.0028515216
+(*)  8000         411.941            0.0063944323              0.0041217072            0.0026567598
+    16000        1032.000            0.0074638596              0.0047400760            0.0030102818
+    32000        1031.000            0.0034912423              0.0021867292            0.0013696513        (Anomaly)
+    64000        4017.000            0.0063959775              0.0039546111            0.0024451226
+
+Underestimated bound: n*log(n)^0.95          
+Overestimated bound: n*log(n)^1.35
+Adjusted bound: n*log(n)^1.15         
+Observations:
+  - the cocient between our times and the underestimated bound is strictly increasing
+  - the cocient between our times and the overestimated bound is strictly decreasing
+  - the cocient between our times and the adjusted bound stays near a stable value of 0.0042...
+  - there could be possible anomalies on some values
+
+Ordenation of ascending vector:
+      n            t(n)          t(n)/n*log(n)^0.90       t(n)/n*log(n)^1.10       t(n)/n*log(n)^1.30
+(*)   500          12.958            0.0050060548              0.0034738643            0.0024106275
+(*)  1000          20.982            0.0036850521              0.0025036652            0.0017010178
+(*)  2000          50.880            0.0040995715              0.0027325331            0.0018213458
+(*)  4000         113.620            0.0042316021              0.0027717337            0.0018155080
+(*)  8000         250.247            0.0043352791              0.0027944234            0.0018012225
+    16000         997.000            0.0080774349              0.0051297394            0.0032577455        (Anomaly)
+    32000        1040.000            0.0039586847              0.0024795103            0.0015530339
+    64000        1992.000            0.0035768046              0.0022115261            0.0013673791
+
+
+Underestimated bound: n*log(n)^0.90         
+Overestimated bound: n*log(n)^1.30
+Adjusted bound: n*log(n)^1.10          
+Observations: 
+  - the cocient between our times and the underestimated bound is strictly increasing
+  - the cocient between our times and the overestimated bound is strictly decreasing
+  - the cocient between our times and the adjusted bound stays near a stable value of 0.027...
+  - there could be possible anomalies on some values
+
+Ordenation of random vector:
+      n            t(n)          t(n)/n*log(n)^1.35       t(n)/n*log(n)^1.55       t(n)/n*log(n)^1.75
+(*)   500          42.918            0.0072872038              0.0050568278            0.0035090973
+(*)  1000         102.609            0.0075523234              0.0051311321            0.0034861479
+(*)  2000         260.127            0.0077137087              0.0052080831            0.0034380182
+(*)  4000         550.637            0.0079153559              0.0051846223            0.0033959696
+     8000        1049.000            0.0067653888              0.0043608175            0.0028108849       (Anomaly)
+    16000        2992.000            0.0087274836              0.0055425661            0.0031199194
+    32000        5981.000            0.0079455717              0.0049766851            0.0031171319
+    64000       13990.000            0.0085156249              0.0052651819            0.0030554440
+
+Underestimated bound: n*log(n)^1.35
+Overestimated bound: n*log(n)^1.75
+Adjusted bound: n*log(n)^1.55
+Observations:
+  - the cocient between our times and the underestimated bound is strictly increasing
+  - the cocient between our times and the overestimated bound is strictly decreasing
+  - the cocient between our times and the adjusted bound stays near a stable value of 0.005...
+  - there could be possible anomalies on some values
+
+-The (*) indicates that the execution time is lower than 500µ so a loop was executed and the average time was used instead.In this loop the algorithmm is executed 1000 times.
+In conclusion:The insertion sort algorithm is faster since it's O(n) and shell sort is O(n2).
