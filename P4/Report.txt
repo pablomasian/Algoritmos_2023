@@ -1,0 +1,55 @@
+In this practice we will implement and test Dijkstra's algorithm, which is used to calculate the shortest path from each vertex to the rest of the vertices in a weighted grap. The goal of this practice is to analyse its efficiency.
+The algorithm was first tested using two pre-made test cases, of sizes 5 and 4, respectively. In both cases, the table of minimum distances is correct:
+
+
+Test Case 1:
+Adjacency matrix:
+0       1       8       4       7
+1       0       2       6       5
+8       2       0       9       5
+4       6       9       0       3
+7       5       5       3       0
+
+Minimum distances:
+0       1       3       4       6
+1       0       2       5       5
+3       2       0       7       5
+4       5       7       0       3
+6       5       5       3       0
+
+Test Case 2:
+Adjacency matrix:
+0       1       4       7
+1       0       2       8
+4       2       0       3
+7       8       3       0
+
+Minimum distances:
+0       1       3       6
+1       0       2       5
+3       2       0       3
+6       5       3       0
+
+
+The algorithm was also put to test with randomly generated undirected graphs. Studying the following table we can determine the theoretical complexity of the algorithms and perform an empirical verification, using underestimated, adjusted and overestimated cotes:
+
+
+      n            t(n)           t(n)/n^2.54        t(n)/n^2.74        t(n)/n^2.94
+(*)    10          13.613          0.039260            0.024772          0.015630
+       50        1000.000          0.048374            0.022122          0.010116
+      100        6864.000          0.057092            0.022729          0.009049
+      200       45075.000          0.064464            0.022342          0.007743
+      500      580349.000          0.080967            0.023362          0.006741
+     1000     4284476.000          0.102777            0.025817          0.006485
+
+Underestimated bound: t/n^2.54
+Overestimated bound: t/n^2.74
+Adjusted bound: t/n^2.94
+Observations:
+- The results grow bigger in the underestimated bound and smaller in the overestimated bound.
+- In the adjusted bound the value tends to a value of 0.022...
+- Although not in this example, there could be possible anomalies on some values
+
+-The (*) indicates that the execution time is lower than 500µ so a loop was executed and the average time was used instead. In this loop the algorithmm is executed 1000 times.
+
+In conclusion: in practice, Dijkstra's algorithm has a time complexity of O(n^2.74), approximately. Even if the theoretical complexity of the algorithm is closer to O(n^2), in practice it can vary depending of various different factors.
